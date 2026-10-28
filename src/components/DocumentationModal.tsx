@@ -20,13 +20,14 @@ import {
   Zap,
   Download,
   Copy,
-  Check
+  Check,
+  FileText
 } from 'lucide-react';
 
 interface DocumentationModalProps {
   isOpen: boolean;
   onClose: () => void;
-  initialTab?: 'dificuldades' | 'combate' | 'bestiario' | 'godot' | 'arquitetura';
+  initialTab?: 'dificuldades' | 'combate' | 'bestiario' | 'godot' | 'arquitetura' | 'cliente';
 }
 
 export const DocumentationModal: React.FC<DocumentationModalProps> = ({
@@ -34,7 +35,7 @@ export const DocumentationModal: React.FC<DocumentationModalProps> = ({
   onClose,
   initialTab = 'dificuldades',
 }) => {
-  const [activeTab, setActiveTab] = useState<'dificuldades' | 'combate' | 'bestiario' | 'godot' | 'arquitetura'>(initialTab);
+  const [activeTab, setActiveTab] = useState<'dificuldades' | 'combate' | 'bestiario' | 'godot' | 'arquitetura' | 'cliente'>(initialTab);
   const [copied, setCopied] = useState(false);
 
   const getManualMarkdown = () => {
@@ -228,6 +229,17 @@ Documentação completa disponível no repositório em /docs/MANUAL_DO_JOGO.md e
           >
             <Cpu className="w-3.5 h-3.5" />
             5. Arquitetura do Motor
+          </button>
+          <button
+            onClick={() => setActiveTab('cliente')}
+            className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-colors ${
+              activeTab === 'cliente'
+                ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40 shadow-sm'
+                : 'text-slate-400 hover:text-amber-200 hover:bg-slate-900'
+            }`}
+          >
+            <FileText className="w-3.5 h-3.5 text-amber-400" />
+            6. Dossiê do Cliente & Repo
           </button>
         </div>
 
@@ -714,6 +726,151 @@ Documentação completa disponível no repositório em /docs/MANUAL_DO_JOGO.md e
                   </p>
                 </div>
               </div>
+            </div>
+          )}
+
+          {/* TAB 6: DOSSIÊ DO CLIENTE & REPOSITÓRIO */}
+          {activeTab === 'cliente' && (
+            <div className="space-y-6">
+              <div className="border border-amber-500/30 rounded-xl p-4 bg-amber-950/20">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="text-base font-semibold text-white flex items-center gap-2">
+                      <FileText className="w-5 h-5 text-amber-400" />
+                      Dossiê Executivo de Entrega para o Cliente
+                    </h3>
+                    <p className="text-xs text-slate-300 mt-1">
+                      Identidade oficial, dados cadastrais para o GitHub, escopo de fases e atalhos de documentação técnica.
+                    </p>
+                  </div>
+                  <span className="text-[11px] font-mono px-2.5 py-1 rounded-full bg-emerald-950/80 text-emerald-300 border border-emerald-500/40">
+                    Status: 100% Pronto
+                  </span>
+                </div>
+              </div>
+
+              {/* Repositório e Descrições Prontas */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                
+                {/* Nome do Repositório */}
+                <div className="p-4 rounded-xl bg-slate-900 border border-slate-800 flex flex-col justify-between">
+                  <div>
+                    <span className="text-[10px] font-mono uppercase text-amber-400 font-bold tracking-wider">
+                      Nome Recomendado para o Repositório GitHub
+                    </span>
+                    <div className="mt-1 p-2.5 rounded-lg bg-slate-950 border border-slate-800 font-mono text-cyan-300 font-bold text-sm select-all">
+                      remanescente-da-alma
+                    </div>
+                    <span className="text-[11px] text-slate-500 mt-1 block">
+                      Alternativas: <code>souls-remnant-game</code> ou <code>remanescente-da-alma-2d</code>
+                    </span>
+                  </div>
+                </div>
+
+                {/* Tags / Topics */}
+                <div className="p-4 rounded-xl bg-slate-900 border border-slate-800 flex flex-col justify-between">
+                  <div>
+                    <span className="text-[10px] font-mono uppercase text-amber-400 font-bold tracking-wider">
+                      Tópicos & Tags do GitHub (Topics)
+                    </span>
+                    <div className="mt-1 p-2 rounded-lg bg-slate-950 border border-slate-800 font-mono text-xs text-slate-300 select-all">
+                      godot-engine, action-platformer, rpg-2d, typescript, hard-master, 200-floors
+                    </div>
+                    <span className="text-[11px] text-slate-500 mt-1 block">
+                      Otimizado para indexação e visibilidade no GitHub.
+                    </span>
+                  </div>
+                </div>
+
+              </div>
+
+              {/* Descrição Curta (About) */}
+              <div className="p-4 rounded-xl bg-slate-900 border border-slate-800 space-y-2">
+                <span className="text-[10px] font-mono uppercase text-amber-400 font-bold tracking-wider">
+                  Descrição Curta (Para o campo "About" no GitHub - até 350 caracteres)
+                </span>
+                <div className="p-3 rounded-lg bg-slate-950 border border-slate-800 font-sans text-xs text-slate-200 select-all leading-relaxed">
+                  RPG de Ação e Plataforma 2D inspirado no Godot Engine 3.6.3 e Chaomoon. 4 níveis de dificuldade (Fácil, Médio, Difícil e Hard Master com 200 fases), combate técnico com parry de precisão, 10 biomas, Elevador Astral de checkpoints, sintetizador Web Audio procedural e documentação completa.
+                </div>
+              </div>
+
+              {/* Tabela de Dificuldades & Fases Exigidas */}
+              <div className="p-4 rounded-xl bg-slate-900 border border-slate-800 space-y-3">
+                <h4 className="text-xs font-mono uppercase text-cyan-300 font-bold tracking-wider">
+                  Os 4 Níveis de Dificuldade (Com Escala Máxima de Fases)
+                </h4>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+                  <div className="p-2.5 rounded-lg bg-slate-950 border border-emerald-500/30">
+                    <span className="text-emerald-400 font-bold block">1. Fácil</span>
+                    <span className="text-white font-mono font-bold text-sm">50 Fases</span>
+                    <p className="text-[10px] text-slate-400 mt-0.5">Regeneração passiva de alma e 6 corações</p>
+                  </div>
+                  <div className="p-2.5 rounded-lg bg-slate-950 border border-sky-500/30">
+                    <span className="text-sky-400 font-bold block">2. Médio</span>
+                    <span className="text-white font-mono font-bold text-sm">100 Fases</span>
+                    <p className="text-[10px] text-slate-400 mt-0.5">Campanha clássica com 10 biomas completos</p>
+                  </div>
+                  <div className="p-2.5 rounded-lg bg-slate-950 border border-amber-500/30">
+                    <span className="text-amber-400 font-bold block">3. Difícil</span>
+                    <span className="text-white font-mono font-bold text-sm">150 Fases</span>
+                    <p className="text-[10px] text-slate-400 mt-0.5">Inimigos agressivos e 40% de tropas de Elite</p>
+                  </div>
+                  <div className="p-2.5 rounded-lg bg-slate-950 border border-rose-500/40 bg-rose-950/20">
+                    <span className="text-rose-400 font-bold block">4. Hard Master</span>
+                    <span className="text-white font-mono font-bold text-sm">200 FASES ★</span>
+                    <p className="text-[10px] text-rose-300/80 mt-0.5">O teto máximo absoluto com 70% de elites e 100ms parry</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Relação dos Arquivos da Documentação Oficial */}
+              <div className="p-4 rounded-xl bg-slate-900 border border-slate-800 space-y-3">
+                <h4 className="text-xs font-mono uppercase text-amber-400 font-bold tracking-wider">
+                  Arquivos Oficiais de Documentação Técnica no Repositório (/docs)
+                </h4>
+                <div className="space-y-1.5 text-xs font-mono">
+                  <div className="p-2 rounded bg-slate-950 border border-slate-800/80 flex items-center justify-between">
+                    <span className="text-cyan-300">docs/DOCUMENTACAO_DO_CLIENTE.md</span>
+                    <span className="text-slate-400 text-[11px]">Dossiê executivo de entrega e cadastro</span>
+                  </div>
+                  <div className="p-2 rounded bg-slate-950 border border-slate-800/80 flex items-center justify-between">
+                    <span className="text-cyan-300">docs/MANUAL_DO_JOGO.md</span>
+                    <span className="text-slate-400 text-[11px]">Manual completo, controles e bestiário</span>
+                  </div>
+                  <div className="p-2 rounded bg-slate-950 border border-slate-800/80 flex items-center justify-between">
+                    <span className="text-cyan-300">docs/TABELA_DE_FASES_E_BIOMAS.md</span>
+                    <span className="text-slate-400 text-[11px]">Mapeamento dos 200 andares e chefes</span>
+                  </div>
+                  <div className="p-2 rounded bg-slate-950 border border-slate-800/80 flex items-center justify-between">
+                    <span className="text-cyan-300">docs/ARQUITETURA_TECNICA.md</span>
+                    <span className="text-slate-400 text-[11px]">Motor 60 FPS e paridade Godot 3.6.3</span>
+                  </div>
+                  <div className="p-2 rounded bg-slate-950 border border-slate-800/80 flex items-center justify-between">
+                    <span className="text-cyan-300">docs/GUIA_DE_COMPILACAO_E_DEPLOY.md</span>
+                    <span className="text-slate-400 text-[11px]">Instalação, testes e deploy em nuvem</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Botões de Ação Rápida */}
+              <div className="flex flex-wrap items-center gap-3 pt-2">
+                <button
+                  onClick={handleDownloadManual}
+                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs transition-colors shadow-lg shadow-cyan-950"
+                >
+                  <Download className="w-4 h-4" />
+                  <span>Baixar Manual Completo (.MD)</span>
+                </button>
+
+                <button
+                  onClick={handleCopyManual}
+                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 font-semibold text-xs transition-colors"
+                >
+                  {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4 text-cyan-400" />}
+                  <span>{copied ? 'Copiado para Área de Transferência!' : 'Copiar Resumo em Markdown'}</span>
+                </button>
+              </div>
+
             </div>
           )}
 
