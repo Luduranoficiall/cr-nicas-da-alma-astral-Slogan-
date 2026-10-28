@@ -39,7 +39,7 @@ export default function App() {
     stageTime: number;
   }>({
     currentStage: 1,
-    totalStages: 5,
+    totalStages: DIFFICULTY_PRESETS.medio.totalStages,
     stageName: 'As Ruínas do Despertar',
     nextStageName: 'O Bosque Espectral',
     stageTime: 0,
@@ -62,7 +62,7 @@ export default function App() {
     timeElapsed: 0,
     difficulty: 'medio',
     currentStage: 1,
-    totalStages: 5,
+    totalStages: DIFFICULTY_PRESETS.medio.totalStages,
   });
 
   // Boss state for HUD

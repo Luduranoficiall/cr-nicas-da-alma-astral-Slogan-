@@ -16,6 +16,7 @@
 
 O projeto conta com documentação completa em português, disponível tanto em arquivos standalone Markdown quanto integrada diretamente na interface do jogo (tecla `[H]` ou botão *Manual*):
 
+- 📋 **[Dossiê Executivo do Cliente (DOCUMENTACAO_DO_CLIENTE.md)](./docs/DOCUMENTACAO_DO_CLIENTE.md)**: **Documento principal para o cliente** com nome sugerido para o repositório, descrições curta e detalhada, resumo executivo dos 4 níveis de dificuldade, controles e conformidade técnica.
 - 📖 **[Manual Completo do Jogo (MANUAL_DO_JOGO.md)](./docs/MANUAL_DO_JOGO.md)**: Guia completo para jogadores e testadores cobrindo lore, controles, janelas de parry em ms, I-frames da esquiva, lista dos 10 biomas, bestiário com 8 inimigos e chefes titânicos, e as 12 conquistas.
 - 🏛️ **[Arquitetura Técnica & Engenharia (ARQUITETURA_TECNICA.md)](./docs/ARQUITETURA_TECNICA.md)**: Decisões de arquitetura, paridade com Godot 3.6.3 LTS (Android API 36 / iOS 15+ / FTI 2D), loop de física em delta time fixo (60Hz), AABB swept collision, síntese Web Audio procedural e modelo de testes.
 - 🛠️ **[Guia de Compilação, Testes e Deploy (GUIA_DE_COMPILACAO_E_DEPLOY.md)](./docs/GUIA_DE_COMPILACAO_E_DEPLOY.md)**: Instruções passo a passo para clonar, rodar testes unitários, checar tipagem TypeScript, compilar para produção (`dist/`) e fazer deploy (Vercel, GitHub Pages, Docker).

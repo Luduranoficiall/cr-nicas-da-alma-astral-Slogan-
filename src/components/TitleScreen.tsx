@@ -34,8 +34,13 @@ export const TitleScreen: React.FC<TitleScreenProps> = ({
     }
   }, [maxFloor, selectedFloor]);
 
-  // Milestone checkpoints up to maxFloor
-  const checkpoints = [1, 25, 50, 75, 100, 125, 150, 175, 200].filter(f => f <= maxFloor);
+  // Milestone checkpoints proporcionalmente calculados até maxFloor
+  const checkpoints = React.useMemo(() => {
+    if (maxFloor <= 50) return [1, 10, 20, 30, 40, 50];
+    if (maxFloor <= 100) return [1, 20, 40, 60, 80, 100];
+    if (maxFloor <= 150) return [1, 25, 50, 75, 100, 125, 150];
+    return [1, 25, 50, 75, 100, 125, 150, 175, 200];
+  }, [maxFloor]);
 
   return (
     <div className="fixed inset-0 z-40 flex flex-col justify-between items-center p-4 sm:p-8 select-none bg-gradient-to-b from-slate-950/70 via-slate-950/85 to-slate-950 overflow-y-auto">
@@ -140,8 +145,13 @@ export const TitleScreen: React.FC<TitleScreenProps> = ({
                   </div>
 
                   <div className="mt-2 pt-2 border-t border-slate-800/60 text-[10px] text-slate-400 font-mono">
-                    <div className="font-bold mb-0.5" style={{ color: conf.accentColor }}>
-                      {conf.totalStages} Fases {conf.id === 'hard_master' ? '(200 Fases - Máximo Absoluto!)' : ''}
+                    <div className="font-bold mb-0.5 flex items-center justify-between" style={{ color: conf.accentColor }}>
+                      <span>{conf.totalStages} Fases</span>
+                      {conf.id === 'hard_master' && (
+                        <span className="text-[9px] px-1 py-0.2 rounded bg-rose-500/20 text-rose-300 font-bold border border-rose-500/30">
+                          ★ MÁXIMO
+                        </span>
+                      )}
                     </div>
                     <div>Dano: <strong className="text-white">{Math.round(conf.enemyDmgMultiplier * 100)}%</strong></div>
                     <div>HP: <strong className="text-white">{conf.playerMaxHp}</strong></div>
