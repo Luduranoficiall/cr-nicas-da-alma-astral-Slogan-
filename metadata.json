@@ -1,0 +1,6 @@
+{
+  "name": "Remanescente da Alma",
+  "description": "Um RPG de ação e plataforma 2D inspirado no motor Godot com 4 modos de dificuldade (Fácil, Médio, Difícil e Hard Master) e documentação completa.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
